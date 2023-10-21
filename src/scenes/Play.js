@@ -6,13 +6,13 @@ class Play extends Phaser.Scene {
     preload() {
         this.load.image('rocket', './assets/rocket.png');
         this.load.image('spaceship', './assets/spaceship.png');
-        this.load.image('starfield', './assets/starfield.png');
+        this.load.image('starfield-mod', './assets/starfield-mod.png');
         this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0 , endFrame: 9})
     }
 
     create() {
         //background
-        this.starfield = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'starfield').setOrigin(0, 0);
+        this.starfieldMod = this.add.tileSprite(0, 0, game.config.width, game.config.height, 'starfield-mod').setOrigin(0, 0);
 
         //green banner
         this.add.rectangle(0, borderUISize + borderPadding, game.config.width, borderUISize * 2, 0x00FF00).setOrigin(0, 0);
@@ -67,15 +67,24 @@ class Play extends Phaser.Scene {
         this.gameOver = false;
 
         scoreConfig.fixedWidth = 0;
+
         this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
             this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', scoreConfig).setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', scoreConfig).setOrigin(0.5);
             this.gameOver = true;
         }, null, this);
+        
+        this.remaining;
+
+        this.timer = this.add.text(game.config.width / 2 + borderUISize, borderUISize + borderPadding * 2,  this.remaining , scoreConfig);
 
     }
 
     update() {
+        this.remaining = Math.round(this.clock.getOverallRemainingSeconds());
+
+        this.timer.text = 'Time Remain:' + this.remaining;
+
         if (this.gameOver && Phaser.Input.Keyboard.JustDown(keyR)) {
             this.scene.restart();
         }
@@ -84,7 +93,7 @@ class Play extends Phaser.Scene {
             this.scene.start('menuScene');
         }
 
-        this.starfield.tilePositionX -= 4;
+        this.starfieldMod.tilePositionX -= 4;
 
         if (!this.gameOver) {
             this.p1Rocket.update();
@@ -95,14 +104,17 @@ class Play extends Phaser.Scene {
 
         //collisions check
         if (this.checkCollision(this.p1Rocket, this.ship01)) {
+            //this.clock += 1;
             this.p1Rocket.reset();
             this.shipExplode(this.ship01);
         }
         if (this.checkCollision(this.p1Rocket, this.ship02)) {
+            //this.clock += 1;
             this.p1Rocket.reset();
             this.shipExplode(this.ship02);
         }
         if (this.checkCollision(this.p1Rocket, this.ship03)) {
+            //this.clock += 1;
             this.p1Rocket.reset();
             this.shipExplode(this.ship03);
         }
