@@ -104,19 +104,19 @@ class Play extends Phaser.Scene {
 
         //collisions check
         if (this.checkCollision(this.p1Rocket, this.ship01)) {
-            //this.clock += 1;
             this.p1Rocket.reset();
             this.shipExplode(this.ship01);
+            this.newTimer();
         }
         if (this.checkCollision(this.p1Rocket, this.ship02)) {
-            //this.clock += 1;
             this.p1Rocket.reset();
             this.shipExplode(this.ship02);
+            this.newTimer();
         }
         if (this.checkCollision(this.p1Rocket, this.ship03)) {
-            //this.clock += 1;
             this.p1Rocket.reset();
             this.shipExplode(this.ship03);
+            this.newTimer();
         }
     }
 
@@ -145,6 +145,15 @@ class Play extends Phaser.Scene {
         this.p1Score += ship.points;
         this.scoreLeft.text = this.p1Score;
         this.sound.play('sfx_explosion');
+    }
+
+    newTimer(){ //destroys the current timer and create a new one with added 1 second
+        this.clock.remove();
+        this.clock = this.time.delayedCall(this.remaining * 1000 + 1 * 1000, () => {
+            this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', this.scoreConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', this.scoreConfig).setOrigin(0.5);
+            this.gameOver = true;
+        }, null, this);
     }
 
 }
