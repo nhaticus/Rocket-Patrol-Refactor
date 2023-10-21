@@ -1,3 +1,10 @@
+// Assigment: Rocket Patrol Mod
+// Name: Nhat Thai
+// Date: 10/21/2023 
+/* 
+    Mods list: Allow the player to control the Rocket after it's fired (1)
+*/
+
 let config = {
     type: Phaser.CANVAS,
     width: 640,
