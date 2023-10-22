@@ -42,6 +42,7 @@ class Play extends Phaser.Scene {
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
 
         this.win1 = false;
+        this.check = false;
 
         //explosion animation
         this.anims.create({
@@ -96,9 +97,10 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-
+        console.log(this.p1Rocket.score + ' ' + this.p2Rocket.score);
         if (this.game.settings.duo && done && Phaser.Input.Keyboard.JustDown(keyD)) {
             //setting up game for second player/ resetting
+            this.check = true;
             this.scoreLeft.text = 0;
             this.p1Rocket.alpha = 0;
             this.p2Rocket.alpha = 1;
@@ -116,9 +118,10 @@ class Play extends Phaser.Scene {
                     this.win1 = true;
                 }
                 if (this.p1Rocket.score == this.p2Rocket.score) {
-                    this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'TIE! press (R) to Rematch', this.scoreConfig).setOrigin(0.5);
+                    this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, 'TIE! press (R) to Rematch or ← for Menu', this.scoreConfig).setOrigin(0.5);
                 } else {
                     this.add.text(game.config.width/2, game.config.height/2 + borderUISize + borderPadding, this.win1 ? 'Player1 WINS' : 'Player2 WINS', this.scoreConfig).setOrigin(0.5);
+                    this.add.text(game.config.width/2, game.config.height/2 + borderUISize * 2 + borderPadding * 2, 'press (R) to Rematch or ← for Menu', this.scoreConfig).setOrigin(0.5);
                 }
                 this.gameOver = true;
                 this.p1Rocket.alpha = 1;
@@ -146,7 +149,7 @@ class Play extends Phaser.Scene {
             this.ship02.update();
             this.ship03.update();
 
-        } else if (!this.gameOver && done) {
+        } else if (!this.gameOver && done && this.check) {
             this.p2Rocket.update();
             this.ship01.update();
             this.ship02.update();

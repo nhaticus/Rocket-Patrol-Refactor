@@ -50,7 +50,7 @@ preload() {
             //hard
             game.settings = {
                 spaceshipSpeed: 4,
-                gameTimer: 5000,
+                gameTimer: 45000,
                 duo: false
             }
             this.sound.play('sfx_select');
@@ -60,7 +60,7 @@ preload() {
             //easy duo mode
             game.settings = {
                 spaceshipSpeed: 3,
-                gameTimer: 5000,
+                gameTimer: 60000,
                 duo: true
             }
             this.sound.play('sfx_select');
