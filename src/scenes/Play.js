@@ -83,7 +83,6 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-        console.log(this.clock.delay)
 
         this.timer.text = 'Time Remain:' + Math.round(this.clock.getOverallRemainingSeconds());
 
@@ -108,16 +107,19 @@ class Play extends Phaser.Scene {
         if (this.checkCollision(this.p1Rocket, this.ship01)) {
             this.p1Rocket.reset();
             this.shipExplode(this.ship01);
+            //add time when scored
             this.clock.delay = this.clock.delay + 1000;
         }
         if (this.checkCollision(this.p1Rocket, this.ship02)) {
             this.p1Rocket.reset();
             this.shipExplode(this.ship02);
+            //add time when scored
             this.clock.delay = this.clock.delay + 1000;
         }
         if (this.checkCollision(this.p1Rocket, this.ship03)) {
             this.p1Rocket.reset();
             this.shipExplode(this.ship03);
+            //add time when scored
             this.clock.delay = this.clock.delay + 1000;
         }
     }
