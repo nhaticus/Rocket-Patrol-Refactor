@@ -1,7 +1,7 @@
 /** 
  * Name: Nhat Thai
  * Title: Rocket Patrol: Better
- * Time took(hours): 4 so far
+ * Time took(hours): 7 so far
  * Mods list (Total Points: 16): 
  * - Allow the player to control the Rocket after it's fired (1)
  * - Create a new scrolling tile sprite for the background (1)
