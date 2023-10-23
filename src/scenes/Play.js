@@ -77,6 +77,12 @@ class Play extends Phaser.Scene {
         this.add.text(game.config.width / 2, borderUISize, 'HIGH SCORE:' + highScore, this.scoreConfig).setOrigin(0.5);
 
         if(!this.game.settings.duo) {
+            this.time.delayedCall(30000, () => {
+                this.ship01.moveSpeed *= 2;
+                this.ship02.moveSpeed *= 2;
+                this.ship03.moveSpeed *= 2;
+            }, null, this);
+
             this.clock = this.time.delayedCall(game.settings.gameTimer, () => {
                 this.add.text(game.config.width/2, game.config.height/2, 'GAME OVER', this.scoreConfig).setOrigin(0.5);
                 this.add.text(game.config.width/2, game.config.height/2 + 64, 'Press (R) to Restart or ← for Menu', this.scoreConfig).setOrigin(0.5);
@@ -97,7 +103,6 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-        console.log(this.p1Rocket.score + ' ' + this.p2Rocket.score);
         if (this.game.settings.duo && done && Phaser.Input.Keyboard.JustDown(keyD)) {
             //setting up game for second player/ resetting
             this.check = true;
