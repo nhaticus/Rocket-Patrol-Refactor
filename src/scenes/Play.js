@@ -229,6 +229,5 @@ class Play extends Phaser.Scene {
         this.scoreLeft.text = rocket.score;
         let number = Phaser.Math.Between(1,6);
         this.sound.play('sfx_explosion'+ number);
-        console.log('sfx_explosion' + number + ' is playing')
     }
 }
