@@ -76,6 +76,7 @@ class Play extends Phaser.Scene {
         //high score
         this.add.text(game.config.width / 2, borderUISize, 'HIGH SCORE:' + highScore, this.scoreConfig).setOrigin(0.5);
 
+        //double speed of ships after 30 seconds for expert and novice
         if(!this.game.settings.duo) {
             this.time.delayedCall(30000, () => {
                 this.ship01.moveSpeed *= 2;
@@ -226,6 +227,8 @@ class Play extends Phaser.Scene {
         //add score
         rocket.score += ship.points;
         this.scoreLeft.text = rocket.score;
-        this.sound.play('sfx_explosion');
+        let number = Phaser.Math.Between(1,6);
+        this.sound.play('sfx_explosion'+ number);
+        console.log('sfx_explosion' + number + ' is playing')
     }
 }
