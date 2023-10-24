@@ -5,7 +5,12 @@ class Menu extends Phaser.Scene {
 
 preload() {
     this.load.audio('sfx_select', './assets/blip_select12.wav');
-    this.load.audio('sfx_explosion', './assets/explosion38.wav');
+    this.load.audio('sfx_explosion1', './assets/explosion38.wav');
+    this.load.audio('sfx_explosion2', './assets/explosion-2.wav');  //Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=6288">Pixabay</a>
+    this.load.audio('sfx_explosion3', './assets/explosion-3.wav');  //Sound Effect by <a href="https://pixabay.com/users/lordsonny-38439655/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=162883">LordSonny</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=162883">Pixabay</a>
+    this.load.audio('sfx_explosion4', './assets/explosion-4.wav');  //Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=45659">Pixabay</a>
+    this.load.audio('sfx_explosion5', './assets/explosion-5.wav');  //Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=39536">Pixabay</a>
+    this.load.audio('sfx_explosion6', './assets/explosion-6.wav');  //Sound Effect from <a href="https://pixabay.com/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=102838">Pixabay</a>
     this.load.audio('sfx_rocket', './assets/rocket_shot.wav');
 }
 
